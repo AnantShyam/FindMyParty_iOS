@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (5.0.5)
+  - Alamofire (5.4.4)
   - Firebase/Analytics (8.9.1):
     - Firebase/Core
   - Firebase/Auth (8.9.1):
@@ -148,7 +148,7 @@ PODS:
   - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 5.0.0-rc.3)
+  - Alamofire (~> 5.4)
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Database
@@ -200,7 +200,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
-  Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
+  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
   Firebase: fb5114cd2bf96e2ff7bcb01d0d9a156cf5fd2f07
   FirebaseAnalytics: 4ab446ce08a3fe52e8a4303dd997cf26276bf968
   FirebaseAuth: 2b78b2a32c07b3ecfa4970bdf1d3632b8304099b
@@ -225,6 +225,6 @@ SPEC CHECKSUMS:
   Spring: 3d113f14575ef79aec9c5f906dfa4f5001c03254
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 7ad430e11af033ef669489ecf87454741de5c9dc
+PODFILE CHECKSUM: dc489b586341e6ce2ecc8ab2dc4ad8ebb94fee83
 
 COCOAPODS: 1.11.2

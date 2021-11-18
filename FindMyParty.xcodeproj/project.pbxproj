@@ -7,18 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84143CD42743153D00A13E52 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84143CD32743153D00A13E52 /* SplashViewController.swift */; };
 		8431B00927430F1F00C6FC6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431B00827430F1F00C6FC6A /* AppDelegate.swift */; };
 		8431B00B27430F1F00C6FC6A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431B00A27430F1F00C6FC6A /* SceneDelegate.swift */; };
 		8431B00D27430F1F00C6FC6A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431B00C27430F1F00C6FC6A /* ViewController.swift */; };
 		8431B01027430F1F00C6FC6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8431B00E27430F1F00C6FC6A /* Main.storyboard */; };
 		8431B01227430F2000C6FC6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8431B01127430F2000C6FC6A /* Assets.xcassets */; };
 		8431B01527430F2000C6FC6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8431B01327430F2000C6FC6A /* LaunchScreen.storyboard */; };
+		8481F2D72745BB3600B0B197 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8481F2D62745BB3600B0B197 /* LoginViewController.swift */; };
 		E3DAAC9EAFF1A36A2323F740 /* Pods_FindMyParty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CBBCA26084CF0B74701C220 /* Pods_FindMyParty.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1A8A7B028F525D6DD5D2031C /* Pods-FindMyParty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindMyParty.debug.xcconfig"; path = "Target Support Files/Pods-FindMyParty/Pods-FindMyParty.debug.xcconfig"; sourceTree = "<group>"; };
 		253B7AB6DA7F4A24ED9A2069 /* Pods-FindMyParty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindMyParty.release.xcconfig"; path = "Target Support Files/Pods-FindMyParty/Pods-FindMyParty.release.xcconfig"; sourceTree = "<group>"; };
+		84143CD32743153D00A13E52 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		8431B00527430F1F00C6FC6A /* FindMyParty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindMyParty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8431B00827430F1F00C6FC6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8431B00A27430F1F00C6FC6A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -27,6 +30,7 @@
 		8431B01127430F2000C6FC6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8431B01427430F2000C6FC6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8431B01627430F2000C6FC6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8481F2D62745BB3600B0B197 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8CBBCA26084CF0B74701C220 /* Pods_FindMyParty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FindMyParty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -70,6 +74,8 @@
 				8431B01127430F2000C6FC6A /* Assets.xcassets */,
 				8431B01327430F2000C6FC6A /* LaunchScreen.storyboard */,
 				8431B01627430F2000C6FC6A /* Info.plist */,
+				84143CD32743153D00A13E52 /* SplashViewController.swift */,
+				8481F2D62745BB3600B0B197 /* LoginViewController.swift */,
 			);
 			path = FindMyParty;
 			sourceTree = "<group>";
@@ -88,7 +94,6 @@
 				1A8A7B028F525D6DD5D2031C /* Pods-FindMyParty.debug.xcconfig */,
 				253B7AB6DA7F4A24ED9A2069 /* Pods-FindMyParty.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -228,6 +233,8 @@
 				8431B00D27430F1F00C6FC6A /* ViewController.swift in Sources */,
 				8431B00927430F1F00C6FC6A /* AppDelegate.swift in Sources */,
 				8431B00B27430F1F00C6FC6A /* SceneDelegate.swift in Sources */,
+				8481F2D72745BB3600B0B197 /* LoginViewController.swift in Sources */,
+				84143CD42743153D00A13E52 /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
