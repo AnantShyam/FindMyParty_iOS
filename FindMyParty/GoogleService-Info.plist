@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>33643650423-43d7jqljf56640gb84j01aidkd0u7u2k.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.33643650423-43d7jqljf56640gb84j01aidkd0u7u2k</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAINSbLO-FP_byq5x3u2Y5UqxYAu8_v5Kw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>33643650423</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>nsn8.FindMyParty</string>
+	<key>PROJECT_ID</key>
+	<string>find-my-party-hack-challenge</string>
+	<key>STORAGE_BUCKET</key>
+	<string>find-my-party-hack-challenge.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:33643650423:ios:df10250d33335852f4d572</string>
+</dict>
+</plist>

@@ -8,11 +8,11 @@
 import Foundation
 
 class Party {
-    var host: User
+    var host: AppUser
     var location: String
-    var attendees: [User]
+    var attendees: [AppUser]
     
-    init (host: User, location: String){
+    init (host: AppUser, location: String){
         self.host = host
         self.location = location
         self.attendees = []
