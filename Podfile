@@ -21,6 +21,7 @@ pod 'JGProgressHUD'
 pod "Google-Maps-iOS-Utils"
 pod 'Spring', :git => 'https://github.com/MengTo/Spring.git'
 pod 'Alamofire', '~> 5.4'
+pod 'GoogleSignIn'
 
 
 
