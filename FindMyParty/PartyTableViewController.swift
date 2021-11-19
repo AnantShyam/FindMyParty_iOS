@@ -34,19 +34,21 @@ class PartyTableViewController: UIViewController, UITableViewDataSource{
 //        Initialize Table View
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
-        tableView.delegate = self
+//        tableView.delegate = self
 //        tableView.register(
-        
-        
-        
-        
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
     
-
-}
-
-extension ViewController: UITableViewDataSource{
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let party = parties[indexPath.row]
+        if let part = tableView.cellForRow(at: indexPath) as? PartyTableViewCell {
+            let vc = PartyTableViewController()
+            present(vc, animated: true, completion: nil)
+        }
+        
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return parties.count
     }
@@ -62,21 +64,8 @@ extension ViewController: UITableViewDataSource{
         }
     }
     
+    
+
 }
 
-extension ViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let party = parties[indexPath.row]
-        if let part = tableView.cellForRow(at: indexPath) as? PartyTableViewCell {
-            let vc = PartyTableViewController(delegate: self, placeHolderText: party)
-            present(vc, animated: true, completion: nil)
-        }
-        
-    }
-}
 
