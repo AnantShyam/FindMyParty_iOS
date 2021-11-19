@@ -4,18 +4,20 @@
 //
 //  Created by Anant Shyam on 11/15/21.
 //
-
+var globalUser = AppUser(name: "", email: "", photoURL: "")
 import UIKit
 import Spring
 import Firebase
 import GoogleSignIn
 import JGProgressHUD
-
+import SwiftyJSON
+import Alamofire
 class ViewController: UIViewController{
     private var logo = SpringImageView()
     private var discoball = SpringImageView()
     private var GIDBtn = GIDSignInButton()
     private var nextButton = UIButton()
+    let apiURL = "http://10.48.103.166:5000/api/"
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -51,14 +53,20 @@ class ViewController: UIViewController{
         view.addSubview(GIDBtn)
         GIDBtn.addTarget(self, action: #selector(signIn), for: .touchDown)
     }
+    struct User:Encodable{
+        let email:String
+        let name:String
+        let photoURL:String
+    }
     @objc func signIn(){
         let hud = JGProgressHUD.init()
         hud.show(in: self.view, animated: true)
-        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-
-        // Create Google Sign In configuration object.
+        guard let clientID = FirebaseApp.app()?.options.clientID else {
+            hud.dismiss(animated: true)
+            showAlert(msg: "An error occured while signing you in.")
+            return
+        }
         let config = GIDConfiguration(clientID: clientID)
-        // Start the sign in flow!
         GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { [unowned self] user, error in
         if error != nil {
             hud.dismiss(animated: true)
@@ -77,19 +85,28 @@ class ViewController: UIViewController{
             Auth.auth().signIn(with: credential) { authResult, error in
                 if error != nil{
                     hud.dismiss(animated: true)
-                    showAlert(msg: "An error occured while signing you in. \(String(describing: error?.localizedDescription) ?? "Check your internet connection.")")
+                    showAlert(msg: "An error occured while signing you in. \(String(describing: error?.localizedDescription) )")
+                }else{
+                    let user = Auth.auth().currentUser
+                    let email = user?.email
+                    let name = user?.displayName
+                    let photoURl = user?.photoURL?.absoluteString
+                    globalUser.email = email ?? ""
+                    globalUser.name = name ?? ""
+                    globalUser.photoURL = photoURl ?? ""
+                    hud.dismiss(animated: true)
+                    let params = User(email: globalUser.email, name: globalUser.name, photoURL: globalUser.photoURL)
+                    let authURL = self.apiURL + "users/"
+                    print("authURL \(authURL)")
+                    AF.request(authURL, method: .post, parameters: params,encoder: JSONParameterEncoder.default).response { response in
+                            showSuccess(msg: "You've been signed up!")
+                        let mapVC = mapViewController()
+                        self.navigationController?.pushViewController(mapVC, animated: true)
+                        }
+                    }
                 }
             }
-
         }
-        hud.dismiss(animated: true)
-        let user = Auth.auth().currentUser
-        let email = user?.email
-        let name = user?.displayName
-        let photoURl = user?.photoURL
-        print (email,name, photoURl)
-    }
-
     
     func setUpConstraints() {
         NSLayoutConstraint.activate([

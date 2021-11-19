@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1C5D832D27472BA7004933FB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C5D832C27472BA7004933FB /* GoogleService-Info.plist */; };
+		1CA551F4274845370098EF0B /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA551F3274845370098EF0B /* mapViewController.swift */; };
 		1CC47B4D27478C030053EED9 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC47B4C27478C030053EED9 /* AppUtils.swift */; };
 		84143CD42743153D00A13E52 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84143CD32743153D00A13E52 /* SplashViewController.swift */; };
 		8431B00927430F1F00C6FC6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431B00827430F1F00C6FC6A /* AppDelegate.swift */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		1A8A7B028F525D6DD5D2031C /* Pods-FindMyParty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindMyParty.debug.xcconfig"; path = "Target Support Files/Pods-FindMyParty/Pods-FindMyParty.debug.xcconfig"; sourceTree = "<group>"; };
 		1C5D832C27472BA7004933FB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1CA551F3274845370098EF0B /* mapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapViewController.swift; sourceTree = "<group>"; };
 		1CC47B4C27478C030053EED9 /* AppUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
 		253B7AB6DA7F4A24ED9A2069 /* Pods-FindMyParty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindMyParty.release.xcconfig"; path = "Target Support Files/Pods-FindMyParty/Pods-FindMyParty.release.xcconfig"; sourceTree = "<group>"; };
 		84143CD32743153D00A13E52 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				84DC05D8274713A5009EC91A /* PartyTableViewCell.swift */,
 				1C5D832C27472BA7004933FB /* GoogleService-Info.plist */,
 				1CC47B4C27478C030053EED9 /* AppUtils.swift */,
+				1CA551F3274845370098EF0B /* mapViewController.swift */,
 			);
 			path = FindMyParty;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				84DC05D727470F68009EC91A /* PartyTableViewController.swift in Sources */,
 				1CC47B4D27478C030053EED9 /* AppUtils.swift in Sources */,
 				84DC05D127470A19009EC91A /* SignUpViewController.swift in Sources */,
+				1CA551F4274845370098EF0B /* mapViewController.swift in Sources */,
 				8431B00D27430F1F00C6FC6A /* ViewController.swift in Sources */,
 				8431B00927430F1F00C6FC6A /* AppDelegate.swift in Sources */,
 				84DC05D9274713A5009EC91A /* PartyTableViewCell.swift in Sources */,
@@ -415,6 +419,7 @@
 				DEVELOPMENT_TEAM = 49PCK3N6MT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FindMyParty/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "\"We need access to your location to find parties near you.\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -443,6 +448,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FindMyParty/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "\"We need access to your location to find parties near you.\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

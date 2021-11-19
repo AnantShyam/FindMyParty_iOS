@@ -8,17 +8,17 @@
 import Foundation
 import UIKit
 
-class User{
+class AppUser{
     var name: String
     var email: String
     var partiesHosted: [Party]
-//    var photo = UIImage()
+    var photoURL:String
     
-    init (name:String, email: String){
+    init (name:String, email: String, photoURL:String){
         self.name = name
         self.email = email
-//        self.photo = photo
+        self.photoURL = photoURL
         self.partiesHosted = []
-        
+
     }
 }

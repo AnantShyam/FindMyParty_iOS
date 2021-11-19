@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import GoogleMaps
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        GMSServices.provideAPIKey("AIzaSyAuGZx_gtAP5QsXAFLwrI4pxO5LHcOIsm8")
         return true
     }
     @available(iOS 9.0, *)
