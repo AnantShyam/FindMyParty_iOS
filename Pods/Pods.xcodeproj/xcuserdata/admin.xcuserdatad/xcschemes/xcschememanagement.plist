@@ -15,6 +15,8 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>25</integer>
 		</dict>
 		<key>Firebase.xcscheme</key>
 		<dict>
@@ -76,6 +78,8 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>28</integer>
 		</dict>
 		<key>GTMSessionFetcher.xcscheme</key>
 		<dict>
@@ -116,11 +120,15 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>27</integer>
 		</dict>
 		<key>GoogleSignIn.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>26</integer>
 		</dict>
 		<key>GoogleUtilities.xcscheme</key>
 		<dict>
