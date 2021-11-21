@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C40FF0D2749C41400F6D26E /* partyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C40FF0C2749C41400F6D26E /* partyViewController.swift */; };
 		1C5D832D27472BA7004933FB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C5D832C27472BA7004933FB /* GoogleService-Info.plist */; };
 		1CA551F4274845370098EF0B /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA551F3274845370098EF0B /* mapViewController.swift */; };
 		1CC47B4D27478C030053EED9 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC47B4C27478C030053EED9 /* AppUtils.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		1A8A7B028F525D6DD5D2031C /* Pods-FindMyParty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindMyParty.debug.xcconfig"; path = "Target Support Files/Pods-FindMyParty/Pods-FindMyParty.debug.xcconfig"; sourceTree = "<group>"; };
+		1C40FF0C2749C41400F6D26E /* partyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = partyViewController.swift; sourceTree = "<group>"; };
 		1C5D832C27472BA7004933FB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1CA551F3274845370098EF0B /* mapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapViewController.swift; sourceTree = "<group>"; };
 		1CC47B4C27478C030053EED9 /* AppUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				1CC47B4C27478C030053EED9 /* AppUtils.swift */,
 				1CA551F3274845370098EF0B /* mapViewController.swift */,
 				8450A16527485E5D00BD3232 /* profileViewController.swift */,
+				1C40FF0C2749C41400F6D26E /* partyViewController.swift */,
 			);
 			path = FindMyParty;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 			files = (
 				84DC05D727470F68009EC91A /* PartyTableViewController.swift in Sources */,
 				1CC47B4D27478C030053EED9 /* AppUtils.swift in Sources */,
+				1C40FF0D2749C41400F6D26E /* partyViewController.swift in Sources */,
 				1CA551F4274845370098EF0B /* mapViewController.swift in Sources */,
 				8431B00D27430F1F00C6FC6A /* ViewController.swift in Sources */,
 				8431B00927430F1F00C6FC6A /* AppDelegate.swift in Sources */,
