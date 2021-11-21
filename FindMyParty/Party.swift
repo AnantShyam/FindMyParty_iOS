@@ -19,3 +19,11 @@ class Party {
     }
     
 }
+
+
+struct PartyStruct {
+    var name: String?
+    var time: String?
+    var photoURL: String?
+    var count: Int?
+}
