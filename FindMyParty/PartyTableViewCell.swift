@@ -30,8 +30,9 @@ class PartyTableViewCell: UITableViewCell {
     }
     
     func configure(party: Party) {
-        hostlabel.text = party.host.name
-        locationlabel.text = party.location
+        hostlabel.text = "Hosted by : " + party.host.name
+        
+        locationlabel.text = "Location : " + party.location
         attendeecount.text = String(party.attendees.count)
         
     }

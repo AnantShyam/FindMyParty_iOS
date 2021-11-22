@@ -20,6 +20,7 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     private var mapView = GMSMapView()
     private var toTable = UIButton()
     private var toProf = UIButton()
+    private var addParty = UIButton()
     private let locationManager = CLLocationManager()
     private var coords:CLLocationCoordinate2D!
     private let hud = JGProgressHUD.init()
@@ -48,6 +49,16 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         self.toProf.setTitle("😃", for: .normal)
         self.toProf.addTarget(self, action: #selector(toProfButtonPressed), for: .touchUpInside)
         self.mapView.addSubview(self.toProf)
+        
+        self.addParty.backgroundColor = .purple
+        self.addParty.frame = CGRect(x: 5*UIScreen.main.bounds.width/100, y: self.view.frame.height-400, width: 70, height: 70)
+        self.addParty.borderColor = .white
+        self.addParty.borderWidth = 2
+        self.addParty.cornerRadius = 35
+        self.addParty.setTitle("+", for: .normal)
+        self.addParty.addTarget(self, action: #selector(addPartyButtonPressed), for: .touchUpInside)
+        self.mapView.addSubview(self.addParty)
+        
     }
 
     func setUpMap(){
@@ -142,6 +153,13 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         let lat = Double(arr[0])!
         let lng = Double(arr[2])!
         return CLLocationCoordinate2D(latitude: lat, longitude: lng)
+    }
+    
+    
+    @objc func addPartyButtonPressed()
+    {
+        let vc = profileViewController()
+        present(vc, animated: true, completion: nil)
     }
    
 }

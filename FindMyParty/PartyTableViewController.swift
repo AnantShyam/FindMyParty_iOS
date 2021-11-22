@@ -43,7 +43,7 @@ class PartyTableViewController: UIViewController, UITableViewDataSource{
 //        Initialize Table View
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
-//        tableView.delegate = self
+        tableView.delegate = self
         tableView.register(PartyTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
         
@@ -58,16 +58,16 @@ class PartyTableViewController: UIViewController, UITableViewDataSource{
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        return indexPath.row*20
 //    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let party = parties[indexPath.row]
-        if let part = tableView.cellForRow(at: indexPath) as? PartyTableViewCell {
-            let vc = PartyTableViewController()
-            present(vc, animated: true, completion: nil)
-        }
-        
-    }
-    
+//
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let party = parties[indexPath.row]
+//        if let part = tableView.cellForRow(at: indexPath) as? PartyTableViewCell {
+//            let vc = PartyTableViewController()
+//            present(vc, animated: true, completion: nil)
+//        }
+//
+//    }
+//
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return parties.count
     }
@@ -82,6 +82,14 @@ class PartyTableViewController: UIViewController, UITableViewDataSource{
             return UITableViewCell()
         }
     }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let party = parties[indexPath.row]
+//        print("hello")
+//        let vc = partyinfoViewController()
+//        navigationController?.pushViewController(vc, animated: true)
+//    }
+
 
 
     
@@ -105,3 +113,15 @@ class PartyTableViewController: UIViewController, UITableViewDataSource{
     
 
 }
+
+extension PartyTableViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("hello")
+        let party = parties[indexPath.row]
+        let vc = partyinfoViewController()
+        present(vc, animated: true, completion: nil)
+       
+    }
+}
+
