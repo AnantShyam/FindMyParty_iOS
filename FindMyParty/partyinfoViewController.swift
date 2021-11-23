@@ -37,15 +37,15 @@ class partyinfoViewController: UIViewController {
         
         timinglabel.translatesAutoresizingMaskIntoConstraints = false
         timinglabel.font = UIFont.systemFont(ofSize: 18)
-        timinglabel.text = "Date and time: "
+        timinglabel.text = "Date and time: 11/20/2021 at 10:00 PM"
         timinglabel.textColor = .black
         view.addSubview(timinglabel)
         
         locationlabel.translatesAutoresizingMaskIntoConstraints = false
         locationlabel.font = UIFont.systemFont(ofSize: 18)
-        locationlabel.text = "Location: "
+        locationlabel.text = "Location: 315 Church Street"
         locationlabel.textColor = .black
-        view.addSubview(timinglabel)
+        view.addSubview(locationlabel)
         
         rsvp.backgroundColor = .purple
         self.rsvp.frame = CGRect(x: 5*UIScreen.main.bounds.width/100, y: self.view.frame.height-400, width: 70, height: 70)
@@ -72,30 +72,68 @@ class partyinfoViewController: UIViewController {
     func setUpConstraints() {
         NSLayoutConstraint.activate([
             logo.topAnchor.constraint(equalTo:view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            logo.bottomAnchor.constraint(equalTo:logo.topAnchor, constant: 100),
+            logo.bottomAnchor.constraint(equalTo:logo.topAnchor, constant: 75),//100
             logo.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
             logo.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30)
         ])
         NSLayoutConstraint.activate([
             hostlabel.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 0),
-            hostlabel.bottomAnchor.constraint(equalTo:view.safeAreaLayoutGuide.bottomAnchor, constant: -200),
+//            hostlabel.bottomAnchor.constraint(equalTo:view.safeAreaLayoutGuide.bottomAnchor, constant: -350),
+            hostlabel.bottomAnchor.constraint(equalTo:logo.topAnchor, constant: 150),
             hostlabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
             hostlabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30)
         ])
         NSLayoutConstraint.activate([
             timinglabel.topAnchor.constraint(equalTo: hostlabel.bottomAnchor, constant: 50),
-            timinglabel.bottomAnchor.constraint(equalTo:view.safeAreaLayoutGuide.bottomAnchor, constant: -300),
+//            timinglabel.bottomAnchor.constraint(equalTo:view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
+            timinglabel.bottomAnchor.constraint(equalTo: hostlabel.topAnchor, constant: 150),
             timinglabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
             timinglabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30)
         ])
+        
+        
         NSLayoutConstraint.activate([
-            rsvp.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100)
+            locationlabel.topAnchor.constraint(equalTo: timinglabel.bottomAnchor, constant: 50),
+            locationlabel.bottomAnchor.constraint(equalTo: timinglabel.topAnchor, constant: 100),//100
+            locationlabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
+            locationlabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30)
         ])
-        NSLayoutConstraint.activate([
-            rsvp.heightAnchor.constraint(equalToConstant: 75),
-            rsvp.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant:30),
-            rsvp.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30)
-        ])
+        
+        
+//        NSLayoutConstraint.activate([
+//            rsvp.topAnchor.constraint(equalTo: timinglabel.bottomAnchor, constant: 10)
+//        ])
+//        NSLayoutConstraint.activate([
+//            rsvp.heightAnchor.constraint(equalToConstant: 75),
+//            rsvp.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant:30),
+//            rsvp.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30)
+//        ])
+        
+        
+        
+        
+//        NSLayoutConstraint.activate([
+//            rsvp.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100)
+//        ])
+//        NSLayoutConstraint.activate([
+//            rsvp.heightAnchor.constraint(equalToConstant: 75),
+//            rsvp.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant:30),
+//            rsvp.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30)
+//        ])
+        
+        
+        
+        
+//        NSLayoutConstraint.activate([
+//            locationlabel.topAnchor.constraint(equalTo: timinglabel.bottomAnchor, constant: 50),
+        
+        
+        
+//            locationlabel.bottomAnchor.constraint(equalTo:view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
+//            locationlabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
+//            locationlabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30)
+//        ])
+        
     }
 
 }
