@@ -8,7 +8,7 @@
 import UIKit
 
 class partyinfoViewController: UIViewController {
-    
+    var party = PartyStruct()
     var logo = UIImageView()
     var discoball = UIImageView()
     
@@ -20,6 +20,7 @@ class partyinfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(party.name)
         
         view.backgroundColor = .white
         logo.image = UIImage(named: "logotext")
@@ -31,22 +32,22 @@ class partyinfoViewController: UIViewController {
         
         hostlabel.translatesAutoresizingMaskIntoConstraints = false
         hostlabel.font = UIFont.systemFont(ofSize: 18)
-        hostlabel.text = "Hosted by : Mark"
+        hostlabel.text = "Hosted by " + party.name!
         hostlabel.textColor = .black
         view.addSubview(hostlabel)
         
         timinglabel.translatesAutoresizingMaskIntoConstraints = false
         timinglabel.font = UIFont.systemFont(ofSize: 18)
-        timinglabel.text = "Date and time: 11/20/2021 at 10:00 PM"
+        timinglabel.text = "On " + party.time!
         timinglabel.textColor = .black
         view.addSubview(timinglabel)
         
-        locationlabel.translatesAutoresizingMaskIntoConstraints = false
-        locationlabel.font = UIFont.systemFont(ofSize: 18)
-        locationlabel.text = "Location: 315 Church Street"
-        locationlabel.textColor = .black
-        view.addSubview(locationlabel)
-        
+//        locationlabel.translatesAutoresizingMaskIntoConstraints = false
+//        locationlabel.font = UIFont.systemFont(ofSize: 18)
+//        locationlabel.text = "At " + party.
+//        locationlabel.textColor = .black
+//        view.addSubview(locationlabel)
+//
         rsvp.backgroundColor = .purple
         self.rsvp.frame = CGRect(x: 5*UIScreen.main.bounds.width/100, y: self.view.frame.height-400, width: 70, height: 70)
         self.rsvp.borderColor = .white

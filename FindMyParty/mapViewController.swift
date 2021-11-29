@@ -141,7 +141,7 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
 
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         if let place = marker.userData as? PartyStruct {
-            let partyVC = partyViewController()
+            let partyVC = partyinfoViewController()
             partyVC.party = place
             present(partyVC, animated: true)
         }

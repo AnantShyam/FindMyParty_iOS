@@ -117,7 +117,7 @@ class PartyTableViewController: UIViewController, UITableViewDataSource{
 extension PartyTableViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("hello")
+        //print("hello")
         let party = parties[indexPath.row]
         let vc = partyinfoViewController()
         present(vc, animated: true, completion: nil)

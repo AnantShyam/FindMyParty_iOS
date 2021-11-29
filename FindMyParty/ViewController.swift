@@ -94,11 +94,11 @@ class ViewController: UIViewController{
                     globalUser.email = email ?? ""
                     globalUser.name = name ?? ""
                     globalUser.photoURL = photoURl ?? ""
-                    hud.dismiss(animated: true)
                     let params = User(email: globalUser.email, name: globalUser.name, photoURL: globalUser.photoURL)
                     let authURL = self.apiURL + "users/"
                     print("authURL \(authURL)")
                     AF.request(authURL, method: .post, parameters: params,encoder: JSONParameterEncoder.default).response { response in
+                        hud.dismiss(animated: true)
                             showSuccess(msg: "You've been signed up!")
                         let mapVC = mapViewController()
                         self.navigationController?.pushViewController(mapVC, animated: true)

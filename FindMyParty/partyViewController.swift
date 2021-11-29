@@ -42,7 +42,7 @@ class partyViewController: UIViewController {
     func setUpUI()
     {
         self.disableAutoTranslation()
-        self.activateConstraints()
+//        self.activateConstraints()
         self.view.addSubview(logoImg)
         
         
@@ -60,8 +60,8 @@ class partyViewController: UIViewController {
     
     func activateConstraints(){
         NSLayoutConstraint.activate([
-            logoImg.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            logoImg.widthAnchor.constraint(equalToConstant: 200)
+//            logoImg.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+//            logoImg.widthAnchor.constraint(equalToConstant: 200)
         ])
     }
 }
