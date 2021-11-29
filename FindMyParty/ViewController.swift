@@ -17,7 +17,7 @@ class ViewController: UIViewController{
     private var discoball = SpringImageView()
     private var GIDBtn = GIDSignInButton()
     private var nextButton = UIButton()
-    let apiURL = "http://10.48.103.166:5000/api/"
+    let apiURL = "https://findmyparty-wj6gklp34a-ue.a.run.app/api/"
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: animated)

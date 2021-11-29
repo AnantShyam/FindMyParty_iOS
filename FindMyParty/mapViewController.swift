@@ -24,7 +24,7 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     private let locationManager = CLLocationManager()
     private var coords:CLLocationCoordinate2D!
     private let hud = JGProgressHUD.init()
-    private let apiURL = "http://10.48.103.166:5000/api/"
+    private let apiURL = "https://findmyparty-wj6gklp34a-ue.a.run.app/api/"
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpMap()
@@ -72,6 +72,7 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             NSLog("One or more of the map styles failed to load. \(error)")
         }
         mapView.delegate = self
+        mapView.isMyLocationEnabled = true
         self.setUpLocation()
         
     }
@@ -87,7 +88,6 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             coords = location.coordinate
             print(coords.longitude)
             locationManager.stopUpdatingLocation()
-            hud.dismiss()
             refreshMap()
         }
         func refreshMap(){
@@ -110,28 +110,30 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
     }
     func getAllParties(){
-        AF.request(apiURL+"parties/", method: .get).response() { response in
+        AF.request(apiURL+"parties/", method: .get).response() {response in
+            self.hud.dismiss()
             if(response.error != nil){
-                self.hud.dismiss()
                 showAlert(msg: "You appear to be offline, check your internet connectivity and retry.")
             }else{
                 let jsonResp = JSON(response.value as Any)
                 let parties = jsonResp["parties"]
                 for party in parties{
                     let innerParty = party.1
+                    print(innerParty)
                     let date = innerParty["dateTime"].stringValue
                     let photoURL = innerParty["photoURL"].stringValue
                     let host = innerParty["host"].stringValue
                     let attendeesCount = innerParty["attendees"].stringValue.count
                     let loc = innerParty["location"].stringValue
+                    print(loc)
                     let position = self.parseLocation(locString: loc)
                     let marker = GMSMarker()
                     let partyData = PartyStruct(name: host, time: date, photoURL: photoURL, count: attendeesCount)
-                    let icon = UIImage(named: "partyMarker")
-                    marker.icon = icon
+                    print(partyData)
                     marker.userData = partyData
                     marker.position = position
-                    marker.map = self.mapView
+                    print(marker.position)
+                    print("added overlay")
                 }
             }
         }
@@ -150,9 +152,9 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     func parseLocation(locString: String) -> CLLocationCoordinate2D{
         let separators = CharacterSet(charactersIn: ", ")
         let arr = locString.components(separatedBy: separators)
-        let lat = Double(arr[0])!
-        let lng = Double(arr[2])!
-        return CLLocationCoordinate2D(latitude: lat, longitude: lng)
+        let lat = Double(arr[0])
+        let lng = Double(arr[2])
+        return CLLocationCoordinate2D(latitude: lat!, longitude: lng!)
     }
     
     
