@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 class Party {
     var host: AppUser
@@ -28,4 +29,7 @@ struct PartyStruct {
     var time: String?
     var photoURL: String?
     var count: Int?
+    var theme: String?
+    var coords: CLLocationCoordinate2D?
+    var id: Int?
 }

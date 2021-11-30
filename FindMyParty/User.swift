@@ -12,14 +12,15 @@ import UIKit
 class AppUser{
     var name: String
     var email: String
-    var partiesHosted: [Party]
+    var parties: [PartyStruct]
     var photoURL:String
+    var id:Int
     
-    init (name:String, email: String, photoURL:String){
+    init (name:String, email: String, photoURL:String, id:Int){
         self.name = name
         self.email = email
         self.photoURL = photoURL
-        self.partiesHosted = []
-
+        self.parties = []
+        self.id = id
     }
 }

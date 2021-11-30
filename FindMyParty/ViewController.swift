@@ -4,7 +4,7 @@
 //
 //  Created by Anant Shyam on 11/15/21.
 //
-var globalUser = AppUser(name: "", email: "", photoURL: "")
+var globalUser = AppUser(name: "", email: "", photoURL: "", id: 0)
 import UIKit
 import Spring
 import Firebase
@@ -12,15 +12,23 @@ import GoogleSignIn
 import JGProgressHUD
 import SwiftyJSON
 import Alamofire
+import CoreLocation
+
 class ViewController: UIViewController{
     private var logo = SpringImageView()
     private var discoball = SpringImageView()
     private var GIDBtn = GIDSignInButton()
     private var nextButton = UIButton()
-    let apiURL = "https://findmyparty-wj6gklp34a-ue.a.run.app/api/"
+    
+    let apiURL = "http://10.48.103.166:5000/api/"
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        if (Auth.auth().currentUser != nil)
+        {
+            print("called")
+            self.fetchUserData(email: (Auth.auth().currentUser?.email)!)
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,11 +61,16 @@ class ViewController: UIViewController{
         view.addSubview(GIDBtn)
         GIDBtn.addTarget(self, action: #selector(signIn), for: .touchDown)
     }
-    struct User:Encodable{
+    struct User:Codable{
         let email:String
         let name:String
         let photoURL:String
     }
+    
+    struct Email:Codable{
+        let email:String
+    }
+    
     @objc func signIn(){
         let hud = JGProgressHUD.init()
         hud.show(in: self.view, animated: true)
@@ -96,10 +109,11 @@ class ViewController: UIViewController{
                     globalUser.photoURL = photoURl ?? ""
                     let params = User(email: globalUser.email, name: globalUser.name, photoURL: globalUser.photoURL)
                     let authURL = self.apiURL + "users/"
-                    print("authURL \(authURL)")
-                    AF.request(authURL, method: .post, parameters: params,encoder: JSONParameterEncoder.default).response { response in
+                    AF.request(authURL, method: .post, parameters: params,encoder: JSONParameterEncoder.default).validate().responseData() { response in
+                        let jsonResp = JSON(response.value) 
+                        globalUser.id = Int(jsonResp["id"].stringValue)!
                         hud.dismiss(animated: true)
-                            showSuccess(msg: "You've been signed up!")
+                        showSuccess(msg: "You've been signed up!")
                         let mapVC = mapViewController()
                         self.navigationController?.pushViewController(mapVC, animated: true)
                         }
@@ -107,6 +121,41 @@ class ViewController: UIViewController{
                 }
             }
         }
+    
+    
+    
+    func fetchUserData(email:String){
+        let hud = JGProgressHUD.init()
+        hud.show(in: self.view)
+        let authFetchURL = self.apiURL + "user/email/"
+        let params = Email(email: (Auth.auth().currentUser?.email)!)
+        AF.request(authFetchURL, method: .post, parameters: params,encoder: JSONParameterEncoder.default).validate().responseData() { [self] response in
+            hud.dismiss()
+            let jsonResp = JSON(response.value as Any)
+            globalUser.name = jsonResp["name"].stringValue
+            globalUser.photoURL = jsonResp["photoURL"].stringValue
+            let parties = jsonResp["parties"].arrayValue
+            print("Parties \(parties)")
+            for party in parties{
+                let loc = self.parseLocation(locString: party["location"].rawValue as! String)
+                let party1 = PartyStruct(name: party["host"].rawValue as! String, time: party["dateTime"].rawValue as! String, photoURL: party["photoURL"].rawValue as! String, count: 0, theme: party["theme"].rawValue as! String, coords: loc, id: party["id"].rawValue as! Int)
+                globalUser.parties.append(party1)
+            }
+            globalUser.email = jsonResp["email"].stringValue
+            globalUser.id = Int(jsonResp["id"].stringValue)!
+            let mapVC = mapViewController()
+            self.navigationController?.pushViewController(mapVC, animated: true)
+        }
+    }
+    func parseLocation(locString: String) -> CLLocationCoordinate2D{
+        let separators = CharacterSet(charactersIn: ", ")
+        let arr = locString.components(separatedBy: separators)
+        let lat = Double(arr[0])
+        let lng = Double(arr[2])
+        return CLLocationCoordinate2D(latitude: lat!, longitude: lng!)
+    }
+    
+
     
     func setUpConstraints() {
         NSLayoutConstraint.activate([

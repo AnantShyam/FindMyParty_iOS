@@ -23,8 +23,9 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     private var addParty = UIButton()
     private let locationManager = CLLocationManager()
     private var coords:CLLocationCoordinate2D!
+    var logo = UIImageView()
     private let hud = JGProgressHUD.init()
-    private let apiURL = "https://findmyparty-wj6gklp34a-ue.a.run.app/api/"
+    private let apiURL = "http://10.48.103.166:5000/api/"
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpMap()
@@ -32,6 +33,18 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
     }
     func setUpUI(){
+        logo.image = UIImage(named: "logotext")
+        self.mapView.addSubview(logo)
+        logo.contentMode = UIView.ContentMode.scaleAspectFill
+        NSLayoutConstraint.activate([
+            logo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            logo.leadingAnchor.constraint(equalTo:view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
+            logo.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+            logo.heightAnchor.constraint(equalToConstant: 75)
+        ])
+        self.logo.center.x = self.view.center.x
+        self.mapView.addSubview(logo)
+        
         self.toTable.backgroundColor = .purple
         self.toTable.frame = CGRect(x: 5*UIScreen.main.bounds.width/100, y: self.view.frame.height-200, width: 70, height: 70)
         self.toTable.borderColor = .white
@@ -122,17 +135,28 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                     let date = innerParty["dateTime"].stringValue
                     let photoURL = innerParty["photoURL"].stringValue
                     let host = innerParty["host"].stringValue
-                    let attendeesCount = innerParty["attendees"].stringValue.count
+                    let attendeesCount = innerParty["attendees"].arrayValue.count
                     let loc = innerParty["location"].stringValue
+                    let theme = innerParty["theme"].stringValue
+                    let id = Int(innerParty["id"].stringValue)
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
+                    let absoluteDate = dateFormatter.date(from: date)
+                    
                     print(loc)
                     let position = self.parseLocation(locString: loc)
                     let marker = GMSMarker()
-                    let partyData = PartyStruct(name: host, time: date, photoURL: photoURL, count: attendeesCount)
-                    print(partyData)
+                    let partyData = PartyStruct(name: host, time: date, photoURL: photoURL, count: attendeesCount, theme:theme, coords: position, id:id)
+                    
+                    let img = UIImage(named: "partyMarker")
+                    let icon = UIImageView(image: img)
+                    marker.iconView = icon
                     marker.userData = partyData
                     marker.position = position
-                    print(marker.position)
-                    print("added overlay")
+                    if(Date()<absoluteDate!){ //only add future parties to map lmao im a genius
+                        marker.map = self.mapView
+                    }
+                    
                 }
             }
         }
@@ -144,6 +168,7 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         if let place = marker.userData as? PartyStruct {
             let partyVC = partyinfoViewController()
             partyVC.party = place
+            partyVC.currentLocation = self.coords
             present(partyVC, animated: true)
         }
         return true
@@ -151,17 +176,16 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     func parseLocation(locString: String) -> CLLocationCoordinate2D{
         let separators = CharacterSet(charactersIn: ", ")
         let arr = locString.components(separatedBy: separators)
-//        let lat = Double(arr[0])
-        let lat = Double(1)
-//        let lng = Double(arr[2])
-        let lng = Double(1)
-        return CLLocationCoordinate2D(latitude: lat, longitude: lng)
+        let lat = Double(arr[0])
+        let lng = Double(arr[2])
+        return CLLocationCoordinate2D(latitude: lat!, longitude: lng!)
     }
     
     
     @objc func addPartyButtonPressed()
     {
         let vc = addPartyViewController()
+        vc.userLoc = self.coords
         present(vc, animated: true, completion: nil)
     }
     
