@@ -72,7 +72,6 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             NSLog("One or more of the map styles failed to load. \(error)")
         }
         mapView.delegate = self
-        mapView.isMyLocationEnabled = true
         self.setUpLocation()
         
     }
@@ -152,17 +151,20 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     func parseLocation(locString: String) -> CLLocationCoordinate2D{
         let separators = CharacterSet(charactersIn: ", ")
         let arr = locString.components(separatedBy: separators)
-        let lat = Double(arr[0])
-        let lng = Double(arr[2])
-        return CLLocationCoordinate2D(latitude: lat!, longitude: lng!)
+//        let lat = Double(arr[0])
+        let lat = Double(1)
+//        let lng = Double(arr[2])
+        let lng = Double(1)
+        return CLLocationCoordinate2D(latitude: lat, longitude: lng)
     }
     
     
     @objc func addPartyButtonPressed()
     {
-        let vc = profileViewController()
+        let vc = addPartyViewController()
         present(vc, animated: true, completion: nil)
     }
+    
    
 }
     

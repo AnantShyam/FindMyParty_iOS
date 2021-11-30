@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+
 class AppUser{
     var name: String
     var email: String

@@ -11,11 +11,13 @@ class Party {
     var host: AppUser
     var location: String
     var attendees: [AppUser]
+    var date: String
     
-    init (host: AppUser, location: String){
+    init (host: AppUser, location: String, date: String){
         self.host = host
         self.location = location
         self.attendees = []
+        self.date = date
     }
     
 }

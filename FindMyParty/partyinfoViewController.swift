@@ -20,7 +20,7 @@ class partyinfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(party.name)
+        //print(party.name)
         
         view.backgroundColor = .white
         logo.image = UIImage(named: "logotext")
@@ -32,13 +32,15 @@ class partyinfoViewController: UIViewController {
         
         hostlabel.translatesAutoresizingMaskIntoConstraints = false
         hostlabel.font = UIFont.systemFont(ofSize: 18)
-        hostlabel.text = "Hosted by " + party.name!
+        hostlabel.text = "Hosted by: "
+        //hostlabel.text = "Hosted by:  " + party.name!
         hostlabel.textColor = .black
         view.addSubview(hostlabel)
         
         timinglabel.translatesAutoresizingMaskIntoConstraints = false
         timinglabel.font = UIFont.systemFont(ofSize: 18)
-        timinglabel.text = "On " + party.time!
+        timinglabel.text = "On: "
+        //timinglabel.text = "On " + party.time!
         timinglabel.textColor = .black
         view.addSubview(timinglabel)
         
