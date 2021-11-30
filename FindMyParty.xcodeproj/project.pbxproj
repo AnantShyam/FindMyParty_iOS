@@ -423,6 +423,7 @@
 				DEVELOPMENT_TEAM = 49PCK3N6MT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FindMyParty/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "\"We need access to your photo library to upload party pictures!\"";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "\"We need access to your location to find parties near you.\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -452,6 +453,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FindMyParty/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "\"We need access to your photo library to upload party pictures!\"";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "\"We need access to your location to find parties near you.\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

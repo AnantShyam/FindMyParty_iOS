@@ -23,23 +23,23 @@ class PartyTableViewController: UIViewController, UITableViewDataSource{
         view.backgroundColor = .white
         
 //        Create Dummy Users
-        let Mark = AppUser(name: "Mark B", email: "mark@cornell.edu", photoURL: "www")
-        let Daniel = AppUser(name: "Daniel B", email: "daniel@cornell.edu", photoURL: "www")
-        let Brad = AppUser(name: "Brad O", email: "brad@cornell.edu", photoURL: "www")
-        let Anant = AppUser(name: "Anant S", email: "anant@cornell.edu", photoURL: "www")
-        let Neil = AppUser(name: "Neil G", email: "neil@cornell.edu", photoURL: "www")
-        let Logan = AppUser(name: "Logan P", email: "logan@cornell.edu", photoURL: "www")
-
-//        Create Dummy Parties
-        let Church315 = Party(host: Mark, location: "315 Church Street", date: "11.21.2021 10:45pm")
-        let Beakman412 = Party(host: Daniel, location: "412 Beakman Avenue", date: "11.21.2021 10:45pm")
-        let Cook212 = Party(host: Brad, location: "212 Cook Street", date: "11.21.2021 10:45pm")
-        let Loma705 = Party(host: Anant, location: "705 Loma Boulevard", date: "11.21.2021 10:45pm")
-        let Thurston423 = Party(host: Neil, location: "423 Thurston Avenue", date: "11.21.2021 10:45pm")
-        let Eddy555 = Party(host: Logan, location: "555 Eddy Street", date: "11.21.2021 10:45pm")
-
-        parties = [Church315, Beakman412, Cook212, Loma705, Thurston423, Eddy555]
-        
+//        let Mark = AppUser(name: "Mark B", email: "mark@cornell.edu", photoURL: "www")
+//        let Daniel = AppUser(name: "Daniel B", email: "daniel@cornell.edu", photoURL: "www")
+//        let Brad = AppUser(name: "Brad O", email: "brad@cornell.edu", photoURL: "www")
+//        let Anant = AppUser(name: "Anant S", email: "anant@cornell.edu", photoURL: "www")
+//        let Neil = AppUser(name: "Neil G", email: "neil@cornell.edu", photoURL: "www")
+//        let Logan = AppUser(name: "Logan P", email: "logan@cornell.edu", photoURL: "www")
+//
+////        Create Dummy Parties
+//        let Church315 = Party(host: Mark, location: "315 Church Street", date: "11.21.2021 10:45pm")
+//        let Beakman412 = Party(host: Daniel, location: "412 Beakman Avenue", date: "11.21.2021 10:45pm")
+//        let Cook212 = Party(host: Brad, location: "212 Cook Street", date: "11.21.2021 10:45pm")
+//        let Loma705 = Party(host: Anant, location: "705 Loma Boulevard", date: "11.21.2021 10:45pm")
+//        let Thurston423 = Party(host: Neil, location: "423 Thurston Avenue", date: "11.21.2021 10:45pm")
+//        let Eddy555 = Party(host: Logan, location: "555 Eddy Street", date: "11.21.2021 10:45pm")
+//
+//        parties = [Church315, Beakman412, Cook212, Loma705, Thurston423, Eddy555]
+//        
 //        Initialize Table View
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
