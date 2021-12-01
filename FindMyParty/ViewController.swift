@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  FindMyParty
 //
-//  Created by Anant Shyam on 11/15/21.
+//  Created by Nirbhay S Narang on 11/15/21.
 //
 var globalUser = AppUser(name: "", email: "", photoURL: "", id: 0)
 import UIKit
@@ -20,10 +20,12 @@ class ViewController: UIViewController{
     private var GIDBtn = GIDSignInButton()
     private var nextButton = UIButton()
     
-    let apiURL = "http://10.48.103.166:5000/api/"
+    let apiURL = "http://10.48.56.164:5000/api/"
     
     override func viewWillAppear(_ animated: Bool) {
+
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        print(Auth.auth().currentUser)
         if (Auth.auth().currentUser != nil)
         {
             print("called")
@@ -109,6 +111,7 @@ class ViewController: UIViewController{
                     globalUser.photoURL = photoURl ?? ""
                     let params = User(email: globalUser.email, name: globalUser.name, photoURL: globalUser.photoURL)
                     let authURL = self.apiURL + "users/"
+                    print(authURL)
                     AF.request(authURL, method: .post, parameters: params,encoder: JSONParameterEncoder.default).validate().responseData() { response in
                         let jsonResp = JSON(response.value) 
                         globalUser.id = Int(jsonResp["id"].stringValue)!
@@ -129,7 +132,8 @@ class ViewController: UIViewController{
         hud.show(in: self.view)
         let authFetchURL = self.apiURL + "user/email/"
         let params = Email(email: (Auth.auth().currentUser?.email)!)
-        AF.request(authFetchURL, method: .post, parameters: params,encoder: JSONParameterEncoder.default).validate().responseData() { [self] response in
+        print(params)
+        AF.request(authFetchURL, method: .post, parameters: params,encoder: JSONParameterEncoder.default).validate().responseData() { response in
             hud.dismiss()
             let jsonResp = JSON(response.value as Any)
             globalUser.name = jsonResp["name"].stringValue

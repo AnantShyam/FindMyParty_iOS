@@ -85,8 +85,8 @@ class partyinfoViewController: UIViewController {
         
         distanceLabel.translatesAutoresizingMaskIntoConstraints = false
         distanceMeasure = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude).distance(from: CLLocation(latitude: party.coords!.latitude, longitude: party.coords!.longitude))
-        let distanceStr = formatDistance(distanceMeasure)
-        distanceLabel.text = distanceStr + " away"
+        let distanceStr = distanceMeasure.kmFormatted
+        distanceLabel.text = distanceStr + "m away"
         distanceLabel.font = UIFont(name: "Avenir Next Medium", size: 20)
         distanceLabel.textColor = .black
         view.addSubview(distanceLabel)
@@ -141,73 +141,52 @@ class partyinfoViewController: UIViewController {
     }
     
     @objc func rsvpAction(){
-        if (self.checkIfRegistered()) {
-            showAlert(msg: "You've already signed up for this party!")
-            return
-        }
         let hud = JGProgressHUD.init()
         hud.show(in: self.view)
-        struct ID:Encodable{
-            var user_id:Int
-        }
-        let params = ID(user_id: globalUser.id)
-        print(params.user_id)
-        let idString = String(party.id!)
-        let endpoint = "http://10.48.103.166:5000/api/party/"+idString+"/attend/"
-        print(endpoint)
-        AF.request(endpoint, method: .post, parameters: params,encoder: JSONParameterEncoder.default).validate().responseData() { response in
-            hud.dismiss()
-            if(response.response?.statusCode==200){
-                showSuccess(msg: "Successfully signed up")
-            }else{
-                print(response.error?.errorDescription)
-                showAlert(msg: "You may be facing connectivity issues.")
-            }
-            let jsonResp = JSON(response.value as Any)
-            print(jsonResp)
-        }
-
-        
-    }
-    
-    func checkIfRegistered() -> Bool {
-        var x = false
-        let hud = JGProgressHUD.init()
-        hud.show(in: self.view)
-        let endpoint = "http://10.48.103.166:5000/api/user/" + String(globalUser.id) + "/parties/"
+        var endpoint = "http://10.48.56.164:5000/api/user/" + String(globalUser.id) + "/parties/"
         AF.request(endpoint).validate().responseData() { response in
             hud.dismiss()
             if(response.response?.statusCode==200){
-                let jsonResp = JSON(response.value).arrayValue
+                let jsonResp = JSON(response.value as Any).arrayValue
                 for party1 in jsonResp{
-                    print(party1["id"].rawValue)
-                    if(party1["id"].rawValue as! Int == self.party.id!){
-                        print("yess")
-                        x = true
+                    print("user has already joined " + party1["id"].stringValue)
+                    print("this party is " + String(self.party.id!))
+                    if(party1["id"].intValue == self.party.id!){
+                        showAlert(msg: "You've already signed up lol")
+                        return
                     }
                 }
-            }else{
+                let params = ID(user_id: globalUser.id)
+                print(params.user_id)
+                let idString = String(self.party.id!)
+                endpoint = "http://10.48.56.164:5000/api/party/"+idString+"/attend/"
+                print(endpoint)
+                AF.request(endpoint, method: .post, parameters: params,encoder: JSONParameterEncoder.default).validate().responseData() { response in
+                    hud.dismiss()
+                    if(response.response?.statusCode==200){
+                        showSuccess(msg: "Successfully signed up")
+                    }else{
+                        print(response.error?.errorDescription)
+                        showAlert(msg: "You may be facing connectivity issues.")
+                    }
+                    let jsonResp = JSON(response.value as Any)
+                    print(jsonResp)
+                }
+            }
+            
+            else {
                 print(response.error?.errorDescription)
                 showAlert(msg: "You may be facing connectivity issues.")
             }
-            let jsonResp = JSON(response.value as Any)
-            print(jsonResp)
         }
-        return x
+        struct ID:Encodable{
+            var user_id:Int
+        }
+        
+
         
     }
     
-    func formatDistance(_ distance: Double) -> String {
-        let numDecimalDigits = (distance >= 4) ? 0 : 2
-
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.minimumFractionDigits = numDecimalDigits
-        formatter.maximumFractionDigits = numDecimalDigits
-
-        let formattedDistance: String = formatter.string(for: distance)!
-        return "\(formattedDistance) m"
-    }
     
     func setUpConstraints() {
         NSLayoutConstraint.activate([

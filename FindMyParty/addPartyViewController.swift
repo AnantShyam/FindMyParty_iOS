@@ -244,7 +244,7 @@ class addPartyViewController: UIViewController, GMSMapViewDelegate, UINavigation
                         downloadURL = url!.absoluteString
                         let locString = String(self.userLoc.latitude) + ", " + String(self.userLoc.longitude)
                         let newParty = PartyParams(host: globalUser.name, location: locString, photoURL: downloadURL, dateTime: datestr, theme: self.themeTf.text!)
-                        let endpoint = "http://10.48.103.166:5000/api/parties/host/"
+                        let endpoint = "http://10.48.56.164:5000/api/parties/host/"
                         AF.request(endpoint, method: .post, parameters: newParty,encoder: JSONParameterEncoder.default).validate().responseData() { response in
                                 let statusCode = response.response?.statusCode
                             if(statusCode==201){
@@ -275,5 +275,9 @@ class addPartyViewController: UIViewController, GMSMapViewDelegate, UINavigation
         self.themeTf.text = ""
         self.imgData = nil
         
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        let vc = mapViewController()
+        vc.getAllParties()
     }
 }
