@@ -23,28 +23,22 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     private var addParty = UIButton()
     private let locationManager = CLLocationManager()
     private var coords:CLLocationCoordinate2D!
-    var logo = UIImageView()
     private let hud = JGProgressHUD.init()
-    private let apiURL = "http://10.48.103.166:5000/api/"
+    private let apiURL = "http://10.48.56.164:5000/api/"
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpMap()
         self.setUpUI()
         
     }
+    override func viewDidAppear(_ animated: Bool) {
+        print("view did appear")
+        self.refreshMap()
+    }
+    override var shouldAutomaticallyForwardAppearanceMethods: Bool{
+        return false
+    }
     func setUpUI(){
-        logo.image = UIImage(named: "logotext")
-        self.mapView.addSubview(logo)
-        logo.contentMode = UIView.ContentMode.scaleAspectFill
-        NSLayoutConstraint.activate([
-            logo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
-            logo.leadingAnchor.constraint(equalTo:view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
-            logo.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
-            logo.heightAnchor.constraint(equalToConstant: 75)
-        ])
-        self.logo.center.x = self.view.center.x
-        self.mapView.addSubview(logo)
-        
         self.toTable.backgroundColor = .purple
         self.toTable.frame = CGRect(x: 5*UIScreen.main.bounds.width/100, y: self.view.frame.height-200, width: 70, height: 70)
         self.toTable.borderColor = .white
@@ -89,6 +83,7 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
     }
     func setUpLocation(){
+            
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             hud.show(in: self.view,animated: true)
@@ -122,6 +117,7 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
     }
     func getAllParties(){
+        print("in get all parties")
         AF.request(apiURL+"parties/", method: .get).response() {response in
             self.hud.dismiss()
             if(response.error != nil){

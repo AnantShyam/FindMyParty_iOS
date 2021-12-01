@@ -6,41 +6,26 @@
 //
 
 import UIKit
- 
-
-class PartyTableViewController: UIViewController, UITableViewDataSource{
+import Alamofire
+import JGProgressHUD
+import SwiftyJSON
+import CoreLocation
+class PartyTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
     var tableView = UITableView()
     let reuseIdentifier = "partyCellReuse"
     let cellHeight: CGFloat = 200
-    var parties: [Party] = []
+    private let apiURL = "http://10.48.56.164:5000/api/"
+    var parties: [PartyStruct] = []
     var titles = UILabel()
-    
+    let hud = JGProgressHUD.init()
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Parties"
         view.backgroundColor = .white
         
-//        Create Dummy Users
-//        let Mark = AppUser(name: "Mark B", email: "mark@cornell.edu", photoURL: "www")
-//        let Daniel = AppUser(name: "Daniel B", email: "daniel@cornell.edu", photoURL: "www")
-//        let Brad = AppUser(name: "Brad O", email: "brad@cornell.edu", photoURL: "www")
-//        let Anant = AppUser(name: "Anant S", email: "anant@cornell.edu", photoURL: "www")
-//        let Neil = AppUser(name: "Neil G", email: "neil@cornell.edu", photoURL: "www")
-//        let Logan = AppUser(name: "Logan P", email: "logan@cornell.edu", photoURL: "www")
-//
-////        Create Dummy Parties
-//        let Church315 = Party(host: Mark, location: "315 Church Street", date: "11.21.2021 10:45pm")
-//        let Beakman412 = Party(host: Daniel, location: "412 Beakman Avenue", date: "11.21.2021 10:45pm")
-//        let Cook212 = Party(host: Brad, location: "212 Cook Street", date: "11.21.2021 10:45pm")
-//        let Loma705 = Party(host: Anant, location: "705 Loma Boulevard", date: "11.21.2021 10:45pm")
-//        let Thurston423 = Party(host: Neil, location: "423 Thurston Avenue", date: "11.21.2021 10:45pm")
-//        let Eddy555 = Party(host: Logan, location: "555 Eddy Street", date: "11.21.2021 10:45pm")
-//
-//        parties = [Church315, Beakman412, Cook212, Loma705, Thurston423, Eddy555]
-//        
-//        Initialize Table View
+
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
@@ -53,20 +38,55 @@ class PartyTableViewController: UIViewController, UITableViewDataSource{
         view.addSubview(titles)
         
         setupConstraints()
+        self.getAllParties()
         
     }
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return indexPath.row*20
-//    }
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let party = parties[indexPath.row]
-//        if let part = tableView.cellForRow(at: indexPath) as? PartyTableViewCell {
-//            let vc = PartyTableViewController()
-//            present(vc, animated: true, completion: nil)
-//        }
-//
-//    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let party = parties[indexPath.row]
+        if let part = tableView.cellForRow(at: indexPath) as? PartyTableViewCell {
+            let vc = PartyTableViewController()
+            
+            present(vc, animated: true, completion: nil)
+        }
+
+    }
+    
+    func getAllParties(){
+        print("in get all parties")
+        AF.request(apiURL+"parties/", method: .get).response() {response in
+            self.hud.dismiss()
+            if(response.error != nil){
+                showAlert(msg: "You appear to be offline, check your internet connectivity and retry.")
+            }else{
+                let jsonResp = JSON(response.value as Any)
+                let parties = jsonResp["parties"]
+                for party in parties{
+                    let innerParty = party.1
+                    print(innerParty)
+                    let date = innerParty["dateTime"].stringValue
+                    let photoURL = innerParty["photoURL"].stringValue
+                    let host = innerParty["host"].stringValue
+                    let attendeesCount = innerParty["attendees"].arrayValue.count
+                    let loc = innerParty["location"].stringValue
+                    let theme = innerParty["theme"].stringValue
+                    let id = Int(innerParty["id"].stringValue)
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
+                    let absoluteDate = dateFormatter.date(from: date)
+                    if(Date()>absoluteDate!){ //only add future parties to map lmao im a genius
+                        let party = PartyStruct(name: host, time: date, photoURL: photoURL, count: attendeesCount, theme: theme, coords: self.parseLocation(locString: loc), id: id)
+                        self.parties.append(party)
+                    }
+                    
+                }
+            }
+        }
+        print(self.parties)
+    }
 //
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return parties.count
@@ -75,7 +95,7 @@ class PartyTableViewController: UIViewController, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? PartyTableViewCell {
             let party = parties[indexPath.row]
-            cell.configure(party: party)
+//            cell.configure(party: party)
             cell.selectionStyle = .none
             return cell
         } else {
@@ -90,7 +110,14 @@ class PartyTableViewController: UIViewController, UITableViewDataSource{
 //        navigationController?.pushViewController(vc, animated: true)
 //    }
 
-
+    func parseLocation(locString: String) -> CLLocationCoordinate2D{
+        let separators = CharacterSet(charactersIn: ", ")
+        let arr = locString.components(separatedBy: separators)
+        let lat = Double(arr[0])
+        let lng = Double(arr[2])
+        return CLLocationCoordinate2D(latitude: lat!, longitude: lng!)
+    }
+    
 
     
     func setupConstraints() {
@@ -113,15 +140,15 @@ class PartyTableViewController: UIViewController, UITableViewDataSource{
     
 
 }
-
-extension PartyTableViewController: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //print("hello")
-        let party = parties[indexPath.row]
-        let vc = partyinfoViewController()
-        present(vc, animated: true, completion: nil)
-       
-    }
-}
+//
+//extension PartyTableViewController: UITableViewDelegate {
+//
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        //print("hello")
+//        let party = parties[indexPath.row]
+//        let vc = partyinfoViewController()
+//        present(vc, animated: true, completion: nil)
+//
+//    }
+//}
 

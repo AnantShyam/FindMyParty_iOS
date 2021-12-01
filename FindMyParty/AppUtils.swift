@@ -453,11 +453,6 @@ extension UIView {
     }
 }
 
-
-func requestToRate() {
-    SKStoreReviewController.requestReview()
-}
-
 extension Double {
     var kmFormatted: String {
 
