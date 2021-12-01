@@ -143,7 +143,7 @@ class partyinfoViewController: UIViewController {
     @objc func rsvpAction(){
         let hud = JGProgressHUD.init()
         hud.show(in: self.view)
-        var endpoint = "http://10.48.56.164:5000/api/user/" + String(globalUser.id) + "/parties/"
+        var endpoint =  "https://findmypartyhck1.herokuapp.com/api/user/" + String(globalUser.id) + "/parties/"
         AF.request(endpoint).validate().responseData() { response in
             hud.dismiss()
             if(response.response?.statusCode==200){
@@ -159,7 +159,7 @@ class partyinfoViewController: UIViewController {
                 let params = ID(user_id: globalUser.id)
                 print(params.user_id)
                 let idString = String(self.party.id!)
-                endpoint = "http://10.48.56.164:5000/api/party/"+idString+"/attend/"
+                endpoint =  "https://findmypartyhck1.herokuapp.com/api/party/"+idString+"/attend/"
                 print(endpoint)
                 AF.request(endpoint, method: .post, parameters: params,encoder: JSONParameterEncoder.default).validate().responseData() { response in
                     hud.dismiss()

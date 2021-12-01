@@ -24,7 +24,7 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     private let locationManager = CLLocationManager()
     private var coords:CLLocationCoordinate2D!
     private let hud = JGProgressHUD.init()
-    private let apiURL = "http://10.48.56.164:5000/api/"
+    private let apiURL =  "https://findmypartyhck1.herokuapp.com/api/"
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpMap()
@@ -83,7 +83,6 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
     }
     func setUpLocation(){
-            
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             hud.show(in: self.view,animated: true)
