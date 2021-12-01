@@ -15,7 +15,7 @@ class PartyTableViewController: UIViewController, UITableViewDataSource, UITable
     var tableView = UITableView()
     let reuseIdentifier = "partyCellReuse"
     let cellHeight: CGFloat = 200
-    private let apiURL = "http://10.48.56.164:5000/api/"
+    private let apiURL =  "https://findmypartyhck1.herokuapp.com/api/"
     var parties: [PartyStruct] = []
     var titles = UILabel()
     let hud = JGProgressHUD.init()
