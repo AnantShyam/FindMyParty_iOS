@@ -38,6 +38,8 @@ class partyinfoViewController: UIViewController {
     
     var rsvpBtn = SpringButton()
     
+    var flag = false
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -132,8 +134,11 @@ class partyinfoViewController: UIViewController {
         rsvpBtn.setTitle("RSVP 💪🏻", for: .normal)
         rsvpBtn.titleLabel?.font = UIFont(name: "Avenir Next Demi Bold", size: 20)
         rsvpBtn.cornerRadius = 10
+  
         view.addSubview(rsvpBtn)
-        
+        if flag{
+            rsvpBtn.isHidden = true
+        }
         rsvpBtn.addTarget(self, action: #selector(rsvpAction), for: .touchDown)
        
         setUpConstraints()

@@ -18,6 +18,7 @@
 		8431B01527430F2000C6FC6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8431B01327430F2000C6FC6A /* LaunchScreen.storyboard */; };
 		8437660927558BD600B1A109 /* addPartyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437660827558BD600B1A109 /* addPartyViewController.swift */; };
 		8450A16627485E5D00BD3232 /* profileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450A16527485E5D00BD3232 /* profileViewController.swift */; };
+		84B887792757483700F52648 /* profileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B887782757483700F52648 /* profileTableViewCell.swift */; };
 		84C74E9A274AB66700A6D46D /* partyinfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C74E99274AB66700A6D46D /* partyinfoViewController.swift */; };
 		84DC05D327470DC3009EC91A /* Party.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC05D227470DC3009EC91A /* Party.swift */; };
 		84DC05D527470E35009EC91A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC05D427470E35009EC91A /* User.swift */; };
@@ -42,6 +43,7 @@
 		8431B01627430F2000C6FC6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8437660827558BD600B1A109 /* addPartyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addPartyViewController.swift; sourceTree = "<group>"; };
 		8450A16527485E5D00BD3232 /* profileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileViewController.swift; sourceTree = "<group>"; };
+		84B887782757483700F52648 /* profileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileTableViewCell.swift; sourceTree = "<group>"; };
 		84C74E99274AB66700A6D46D /* partyinfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = partyinfoViewController.swift; sourceTree = "<group>"; };
 		84DC05D227470DC3009EC91A /* Party.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Party.swift; sourceTree = "<group>"; };
 		84DC05D427470E35009EC91A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				84DC05D427470E35009EC91A /* User.swift */,
 				84DC05D627470F68009EC91A /* PartyTableViewController.swift */,
 				84DC05D8274713A5009EC91A /* PartyTableViewCell.swift */,
+				84B887782757483700F52648 /* profileTableViewCell.swift */,
 				1C5D832C27472BA7004933FB /* GoogleService-Info.plist */,
 				1CC47B4C27478C030053EED9 /* AppUtils.swift */,
 				1CA551F3274845370098EF0B /* mapViewController.swift */,
@@ -255,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84B887792757483700F52648 /* profileTableViewCell.swift in Sources */,
 				84DC05D727470F68009EC91A /* PartyTableViewController.swift in Sources */,
 				1CC47B4D27478C030053EED9 /* AppUtils.swift in Sources */,
 				1CA551F4274845370098EF0B /* mapViewController.swift in Sources */,

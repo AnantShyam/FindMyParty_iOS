@@ -18,6 +18,8 @@ class PartyTableViewController: UIViewController, UITableViewDataSource, UITable
     private let apiURL =  "https://findmypartyhck1.herokuapp.com/api/"
     var parties: [PartyStruct] = []
     var titles = UILabel()
+    var userLoc = CLLocationCoordinate2D()
+    var distances:[Double] = []
     let hud = JGProgressHUD.init()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +51,6 @@ class PartyTableViewController: UIViewController, UITableViewDataSource, UITable
         let party = parties[indexPath.row]
         if let part = tableView.cellForRow(at: indexPath) as? PartyTableViewCell {
             let vc = PartyTableViewController()
-            
             present(vc, animated: true, completion: nil)
         }
 
@@ -77,28 +78,67 @@ class PartyTableViewController: UIViewController, UITableViewDataSource, UITable
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
                     let absoluteDate = dateFormatter.date(from: date)
-                    if(Date()>absoluteDate!){ //only add future parties to map lmao im a genius
+                    if(Date()<absoluteDate!){ //only add future parties to map lmao im a genius
                         let party = PartyStruct(name: host, time: date, photoURL: photoURL, count: attendeesCount, theme: theme, coords: self.parseLocation(locString: loc), id: id)
                         self.parties.append(party)
+                        let dist = CLLocation(latitude: self.userLoc.latitude, longitude: self.userLoc.longitude
+                                                        ).distance(from:CLLocation(latitude: self.parseLocation(locString: loc).latitude, longitude: self.parseLocation(locString: loc).longitude))
+                        print("dist=")
+                        print(dist)
+                        self.distances.append(dist)
+                        DispatchQueue.main.async{
+                            self.tableView.reloadData()
+                        }
                     }
                     
                 }
+                self.sortByDistance()
+                DispatchQueue.main.async{
+                    self.tableView.reloadData()
+                }
             }
         }
-        print(self.parties)
+       
     }
+    func sortByDistance(){
+        var ix:[Int]=[]
+        let new_distances = self.distances.sorted(by: <)
+        for dist in self.distances{
+            var index:Int = new_distances.firstIndex(of: dist)!
+            ix.append(index)
+        }
+        var new_parties:[PartyStruct]=[]
+        for index in ix{
+            new_parties.append(self.parties[index])
+        }
+        self.parties = new_parties
+        
+        DispatchQueue.main.async{
+            self.tableView.reloadData()
+        }
+    }
+    
 //
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return parties.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? PartyTableViewCell {
-            let party = parties[indexPath.row]
-//            cell.configure(party: party)
-            cell.selectionStyle = .none
+        if (self.parties.count != 0){
+            print("in here")
+            let party = self.parties[indexPath.row]
+            print(party)
+            let cell = profileTableViewCell()
+            cell.hostLabel.text = party.name! + "'s party"
+            cell.partyImg.load(url: URL(string: party.photoURL!)!)
+            cell.timeLabel.text = party.time
+            cell.party = party
+            cell.partyImg.roundedImage()
+            cell.userLoc = self.userLoc
             return cell
-        } else {
+        }
+        else{
+            print("data is nil")
             return UITableViewCell()
         }
     }
@@ -110,13 +150,7 @@ class PartyTableViewController: UIViewController, UITableViewDataSource, UITable
 //        navigationController?.pushViewController(vc, animated: true)
 //    }
 
-    func parseLocation(locString: String) -> CLLocationCoordinate2D{
-        let separators = CharacterSet(charactersIn: ", ")
-        let arr = locString.components(separatedBy: separators)
-        let lat = Double(arr[0])
-        let lng = Double(arr[2])
-        return CLLocationCoordinate2D(latitude: lat!, longitude: lng!)
-    }
+   
     
 
     
@@ -137,7 +171,14 @@ class PartyTableViewController: UIViewController, UITableViewDataSource, UITable
         ])
 
     }
-    
+    func parseLocation(locString: String) -> CLLocationCoordinate2D{
+        let separators = CharacterSet(charactersIn: ", ")
+        let arr = locString.components(separatedBy: separators)
+        let lat = Double(arr[0])
+        let lng = Double(arr[2])
+        return CLLocationCoordinate2D(latitude: lat!, longitude: lng!)
+    }
+
 
 }
 //

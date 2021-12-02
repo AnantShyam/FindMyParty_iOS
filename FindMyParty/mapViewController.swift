@@ -19,6 +19,7 @@ import SwiftyJSON
 class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
     private var mapView = GMSMapView()
     private var toTable = UIButton()
+    private var logo=UIImageView()
     private var toProf = UIButton()
     private var addParty = UIButton()
     private let locationManager = CLLocationManager()
@@ -66,6 +67,12 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         self.addParty.addTarget(self, action: #selector(addPartyButtonPressed), for: .touchUpInside)
         self.mapView.addSubview(self.addParty)
         
+        self.logo.image = UIImage(named: "logotext")
+        self.logo.frame = CGRect(x: 0, y: 30, width: (self.view.layer.bounds.width)/2, height: 120)
+        self.logo.center.x = self.view.center.x
+        self.logo.contentMode = .scaleAspectFit
+        self.mapView.addSubview(self.logo)
+    
     }
 
     func setUpMap(){
@@ -106,12 +113,14 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     @objc func toTableButtonPressed()
     {
         let vc = PartyTableViewController()
+        vc.userLoc = self.coords
         present(vc, animated: true, completion: nil)
     }
     
     @objc func toProfButtonPressed() {
         print("called")
         let vc = profileViewController()
+        vc.userLoc = self.coords
         present(vc, animated: true, completion: nil)
         
     }

@@ -13,6 +13,7 @@ class PartyTableViewCell: UITableViewCell {
     var hostlabel = UILabel()
     var locationlabel = UILabel()
     var attendeecount = UILabel()
+    var party = PartyStruct()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -29,11 +30,10 @@ class PartyTableViewCell: UITableViewCell {
         
     }
     
-    func configure(party: Party) {
-        hostlabel.text = "Hosted by : " + party.host.name
+    func configure(party: PartyStruct) {
+        hostlabel.text = "Hosted by : " + party.name!
         
-        locationlabel.text = "Location : " + party.location
-        attendeecount.text = String(party.attendees.count)
+        locationlabel.text = "Time : " + party.time!
         
     }
     
