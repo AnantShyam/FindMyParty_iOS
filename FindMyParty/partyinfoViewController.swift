@@ -43,6 +43,7 @@ class partyinfoViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        self.refreshAttendees()
         
         view.backgroundColor = .white
         
@@ -143,6 +144,25 @@ class partyinfoViewController: UIViewController {
        
         setUpConstraints()
         
+    }
+    func refreshAttendees(){
+        let hud = JGProgressHUD.init()
+        hud.show(in: self.view)
+        let idString = String(self.party.id!)
+        let endpoint =  "https://findmypartyhackchallenge-e2u4urpvoa-uc.a.run.app/api/party/"+idString
+        AF.request(endpoint).validate().responseData() { response in
+            hud.dismiss()
+            if(response.response?.statusCode==200){
+                let resJSON = JSON(response.value as Any)
+                self.party.count = resJSON["attendees"].arrayValue.count
+                self.attendeesLabel.text = String(resJSON["attendees"].arrayValue.count)
+            }else{
+                print(response.error?.errorDescription)
+                showAlert(msg: "You may be facing connectivity issues.")
+            }
+            let jsonResp = JSON(response.value as Any)
+            print(jsonResp)
+        }
     }
     
     @objc func rsvpAction(){

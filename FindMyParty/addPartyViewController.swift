@@ -248,6 +248,7 @@ class addPartyViewController: UIViewController, GMSMapViewDelegate, UINavigation
                         AF.request(endpoint, method: .post, parameters: newParty,encoder: JSONParameterEncoder.default).validate().responseData() { response in
                                 let statusCode = response.response?.statusCode
                             if(statusCode==201){
+                                print(response.value)
                                 hud.dismiss()
                                 showSuccess(msg: "Your party's live!")
                             }

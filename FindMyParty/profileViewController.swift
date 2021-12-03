@@ -22,6 +22,7 @@ class profileViewController: UIViewController, UITableViewDataSource, UITableVie
     var partiesAttended = UILabel()
     var imageWidth = 0
     var tableView = UITableView()
+    let prompt = UILabel()
     let reuseIdentifier = "partyCellReuse"
     let cellHeight: CGFloat = 110
     var userLoc = CLLocationCoordinate2D()

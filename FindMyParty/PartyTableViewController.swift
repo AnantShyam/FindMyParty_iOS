@@ -24,7 +24,6 @@ class PartyTableViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Parties"
         view.backgroundColor = .white
         
 
@@ -34,8 +33,9 @@ class PartyTableViewController: UIViewController, UITableViewDataSource, UITable
         tableView.register(PartyTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
         
-        titles.font = UIFont.boldSystemFont(ofSize: 25.0)
-        titles.text = "Parties"
+        titles.font = UIFont(name: "Avenir Next Demi Bold", size: 25)
+        titles.textColor = .purple
+        titles.text = "Parties near you"
         titles.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(titles)
         
@@ -169,14 +169,14 @@ class PartyTableViewController: UIViewController, UITableViewDataSource, UITable
         
         NSLayoutConstraint.activate([
             titles.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            titles.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            titles.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40)
+            titles.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            titles.heightAnchor.constraint(equalToConstant: 100)
         ])
         
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: titles.bottomAnchor, constant: 20),
+            tableView.topAnchor.constraint(equalTo: titles.bottomAnchor, constant: 50),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
 
