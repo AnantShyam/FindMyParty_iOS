@@ -49,10 +49,12 @@ class PartyTableViewController: UIViewController, UITableViewDataSource, UITable
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let party = parties[indexPath.row]
-        if let part = tableView.cellForRow(at: indexPath) as? PartyTableViewCell {
-            let vc = PartyTableViewController()
-            present(vc, animated: true, completion: nil)
-        }
+        let vc = partyinfoViewController()
+        vc.party = party
+        print("Clicked")
+        print(party)
+        present(vc, animated: true, completion: nil)
+    
 
     }
     

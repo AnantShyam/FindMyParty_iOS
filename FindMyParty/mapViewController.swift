@@ -157,7 +157,7 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                     marker.iconView = icon
                     marker.userData = partyData
                     marker.position = position
-                    if(Date()<absoluteDate!){ //only add future parties to map lmao im a genius
+                    if(Date()<absoluteDate!){
                         marker.map = self.mapView
                     }
                     
