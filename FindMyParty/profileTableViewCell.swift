@@ -11,10 +11,12 @@ import CoreLocation
 class profileTableViewCell: UITableViewCell {
     var hostLabel = UILabel()
     var timeLabel = UILabel()
+    var partieslabel = UILabel()
     var locationButton = UIButton()
     var partyImg = UIImageView()
     var userLoc = CLLocationCoordinate2D()
     var party=PartyStruct()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -27,6 +29,12 @@ class profileTableViewCell: UITableViewCell {
         timeLabel.textColor = .purple
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(timeLabel)
+        
+        partieslabel.font = UIFont(name: "Avenir Next Medium", size: 14)
+        partieslabel.textColor = .purple
+        //partieslabel.text = "Your Parties:"
+        partieslabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(partieslabel)
         
         partyImg.backgroundColor = .purple
         partyImg.translatesAutoresizingMaskIntoConstraints = false

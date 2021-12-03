@@ -200,17 +200,17 @@ class addPartyViewController: UIViewController, GMSMapViewDelegate, UINavigation
         let datestr = dformatter.string(from: date)
         
         if !(checkValidDate(date: date)){
-            showAlert(msg: "That looks like an invalid date lmao")
+            showAlert(msg: "That looks like an invalid date!")
             return
         }
         
         if(self.themeTf.text==""){
-            showAlert(msg: "Bro you need a theme bro")
+            showAlert(msg: "Please add a theme!")
             return
         }
         
         if(self.imgData==nil){
-            showAlert(msg: "That image looks sus. Please select an image.")
+            showAlert(msg: "Please select an appropriate image!")
             return
         }
         struct PartyParams:Encodable{
@@ -244,7 +244,7 @@ class addPartyViewController: UIViewController, GMSMapViewDelegate, UINavigation
                         downloadURL = url!.absoluteString
                         let locString = String(self.userLoc.latitude) + ", " + String(self.userLoc.longitude)
                         let newParty = PartyParams(host: globalUser.name, location: locString, photoURL: downloadURL, dateTime: datestr, theme: self.themeTf.text!)
-                        let endpoint =  "https://findmypartyhck1.herokuapp.com/api/parties/host/"
+                        let endpoint =  "https://findmypartyhackchallenge-e2u4urpvoa-uc.a.run.app/api/parties/host/"
                         AF.request(endpoint, method: .post, parameters: newParty,encoder: JSONParameterEncoder.default).validate().responseData() { response in
                                 let statusCode = response.response?.statusCode
                             if(statusCode==201){

@@ -15,7 +15,7 @@ class PartyTableViewController: UIViewController, UITableViewDataSource, UITable
     var tableView = UITableView()
     let reuseIdentifier = "partyCellReuse"
     let cellHeight: CGFloat = 200
-    private let apiURL =  "https://findmypartyhck1.herokuapp.com/api/"
+    private let apiURL =  "https://findmypartyhackchallenge-e2u4urpvoa-uc.a.run.app/api/"
     var parties: [PartyStruct] = []
     var titles = UILabel()
     var userLoc = CLLocationCoordinate2D()
@@ -131,7 +131,17 @@ class PartyTableViewController: UIViewController, UITableViewDataSource, UITable
             let cell = profileTableViewCell()
             cell.hostLabel.text = party.name! + "'s party"
             cell.partyImg.load(url: URL(string: party.photoURL!)!)
-            cell.timeLabel.text = party.time
+            var x = party.time
+            var y = x!.components(separatedBy: " ")
+            var z = y[1].components(separatedBy: ":")
+            if Int(z[0])! > 12 {
+                z[0] = String(Int(z[0])! - 12)
+                x = y[0] + " " + z[0] + ":" + z[1] + " PM"
+            }
+            else {
+                x! = x! + " AM"
+            }
+            cell.timeLabel.text = x
             cell.party = party
             cell.partyImg.roundedImage()
             cell.userLoc = self.userLoc

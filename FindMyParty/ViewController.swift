@@ -20,18 +20,18 @@ class ViewController: UIViewController{
     private var GIDBtn = GIDSignInButton()
     private var nextButton = UIButton()
     
-    let apiURL = "https://findmypartyhck1.herokuapp.com/api/"
+    let apiURL = "https://findmypartyhackchallenge-e2u4urpvoa-uc.a.run.app/api/"
     
     override func viewWillAppear(_ animated: Bool) {
 
         navigationController?.setNavigationBarHidden(true, animated: animated)
-//        let auth = Firebase.Auth.auth()
-//        do{
-//            try auth.signOut()
-//        }
-//        catch{
-//            print("err")
-//        }
+        let auth = Firebase.Auth.auth()
+        do{
+            try auth.signOut()
+        }
+        catch{
+            print("err")
+        }
         print(Auth.auth().currentUser)
         if (Auth.auth().currentUser != nil)
         {

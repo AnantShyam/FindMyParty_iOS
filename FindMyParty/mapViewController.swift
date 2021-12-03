@@ -25,7 +25,7 @@ class mapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     private let locationManager = CLLocationManager()
     private var coords:CLLocationCoordinate2D!
     private let hud = JGProgressHUD.init()
-    private let apiURL =  "https://findmypartyhck1.herokuapp.com/api/"
+    private let apiURL =  "https://findmypartyhackchallenge-e2u4urpvoa-uc.a.run.app/api/"
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpMap()

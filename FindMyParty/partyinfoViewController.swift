@@ -148,7 +148,7 @@ class partyinfoViewController: UIViewController {
     @objc func rsvpAction(){
         let hud = JGProgressHUD.init()
         hud.show(in: self.view)
-        var endpoint =  "https://findmypartyhck1.herokuapp.com/api/user/" + String(globalUser.id) + "/parties/"
+        var endpoint =  "https://findmypartyhackchallenge-e2u4urpvoa-uc.a.run.app/api/user/" + String(globalUser.id) + "/parties/"
         AF.request(endpoint).validate().responseData() { response in
             hud.dismiss()
             if(response.response?.statusCode==200){
@@ -157,14 +157,14 @@ class partyinfoViewController: UIViewController {
                     print("user has already joined " + party1["id"].stringValue)
                     print("this party is " + String(self.party.id!))
                     if(party1["id"].intValue == self.party.id!){
-                        showAlert(msg: "You've already signed up lol")
+                        showAlert(msg: "You've already signed up!")
                         return
                     }
                 }
                 let params = ID(user_id: globalUser.id)
                 print(params.user_id)
                 let idString = String(self.party.id!)
-                endpoint =  "https://findmypartyhck1.herokuapp.com/api/party/"+idString+"/attend/"
+                endpoint =  "https://findmypartyhackchallenge-e2u4urpvoa-uc.a.run.app/api/party/"+idString+"/attend/"
                 print(endpoint)
                 AF.request(endpoint, method: .post, parameters: params,encoder: JSONParameterEncoder.default).validate().responseData() { response in
                     hud.dismiss()
