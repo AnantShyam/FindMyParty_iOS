@@ -51,8 +51,6 @@ class PartyTableViewController: UIViewController, UITableViewDataSource, UITable
         let party = parties[indexPath.row]
         let vc = partyinfoViewController()
         vc.party = party
-        print("Clicked")
-        print(party)
         present(vc, animated: true, completion: nil)
     
 
@@ -85,8 +83,6 @@ class PartyTableViewController: UIViewController, UITableViewDataSource, UITable
                         self.parties.append(party)
                         let dist = CLLocation(latitude: self.userLoc.latitude, longitude: self.userLoc.longitude
                                                         ).distance(from:CLLocation(latitude: self.parseLocation(locString: loc).latitude, longitude: self.parseLocation(locString: loc).longitude))
-                        print("dist=")
-                        print(dist)
                         self.distances.append(dist)
                         DispatchQueue.main.async{
                             self.tableView.reloadData()
@@ -127,9 +123,7 @@ class PartyTableViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (self.parties.count != 0){
-            print("in here")
             let party = self.parties[indexPath.row]
-            print(party)
             let cell = profileTableViewCell()
             cell.hostLabel.text = party.name! + "'s party"
             cell.partyImg.load(url: URL(string: party.photoURL!)!)
@@ -150,7 +144,6 @@ class PartyTableViewController: UIViewController, UITableViewDataSource, UITable
             return cell
         }
         else{
-            print("data is nil")
             return UITableViewCell()
         }
     }
