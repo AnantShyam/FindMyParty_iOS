@@ -15,7 +15,7 @@ class PartyTableViewController: UIViewController, UITableViewDataSource, UITable
     var tableView = UITableView()
     let reuseIdentifier = "partyCellReuse"
     let cellHeight: CGFloat = 200
-    private let apiURL =  "https://findmypartyhackchallenge-e2u4urpvoa-uc.a.run.app/api/"
+    private let apiURL =  "https://findmypartyhck1.herokuapp.com/api/"
     var parties: [PartyStruct] = []
     var titles = UILabel()
     var userLoc = CLLocationCoordinate2D()

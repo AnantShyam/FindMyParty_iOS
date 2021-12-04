@@ -20,7 +20,7 @@ class ViewController: UIViewController{
     private var GIDBtn = GIDSignInButton()
     private var nextButton = UIButton()
     
-    let apiURL = "https://findmypartyhackchallenge-e2u4urpvoa-uc.a.run.app/api/"
+    let apiURL = "https://findmypartyhck1.herokuapp.com/api/"
     
     override func viewWillAppear(_ animated: Bool) {
 

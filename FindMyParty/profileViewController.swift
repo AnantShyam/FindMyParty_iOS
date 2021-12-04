@@ -114,7 +114,7 @@ class profileViewController: UIViewController, UITableViewDataSource, UITableVie
         dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
         let hud = JGProgressHUD.init()
         hud.show(in: self.view)
-        let endpoint =  "https://findmypartyhackchallenge-e2u4urpvoa-uc.a.run.app/api/user/" + String(globalUser.id) + "/parties/"
+        let endpoint =  "https://findmypartyhck1.herokuapp.com/api/" + String(globalUser.id) + "/parties/"
         AF.request(endpoint).validate().responseData() { response in
                 if(response.response?.statusCode==200){
                     let jsonResp = JSON(response.data).arrayValue

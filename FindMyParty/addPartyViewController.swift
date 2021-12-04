@@ -244,7 +244,7 @@ class addPartyViewController: UIViewController, GMSMapViewDelegate, UINavigation
                         downloadURL = url!.absoluteString
                         let locString = String(self.userLoc.latitude) + ", " + String(self.userLoc.longitude)
                         let newParty = PartyParams(host: globalUser.name, location: locString, photoURL: downloadURL, dateTime: datestr, theme: self.themeTf.text!)
-                        let endpoint =  "https://findmypartyhackchallenge-e2u4urpvoa-uc.a.run.app/api/parties/host/"
+                        let endpoint =  "https://findmypartyhck1.herokuapp.com/api/parties/host/"
                         AF.request(endpoint, method: .post, parameters: newParty,encoder: JSONParameterEncoder.default).validate().responseData() { response in
                                 let statusCode = response.response?.statusCode
                             if(statusCode==201){
