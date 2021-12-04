@@ -25,13 +25,13 @@ class ViewController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
 
         navigationController?.setNavigationBarHidden(true, animated: animated)
-        let auth = Firebase.Auth.auth()
-        do{
-            try auth.signOut()
-        }
-        catch{
-            print("err")
-        }
+//        let auth = Firebase.Auth.auth()
+//        do{
+//            try auth.signOut()
+//        }
+//        catch{
+//            print("err")
+//        }
         print(Auth.auth().currentUser)
         if (Auth.auth().currentUser != nil)
         {

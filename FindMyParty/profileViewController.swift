@@ -114,7 +114,8 @@ class profileViewController: UIViewController, UITableViewDataSource, UITableVie
         dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
         let hud = JGProgressHUD.init()
         hud.show(in: self.view)
-        let endpoint =  "https://findmypartyhck1.herokuapp.com/api/" + String(globalUser.id) + "/parties/"
+        let endpoint =  "https://findmypartyhck1.herokuapp.com/api/user/" + String(globalUser.id) + "/parties/"
+        print(globalUser.id)
         AF.request(endpoint).validate().responseData() { response in
                 if(response.response?.statusCode==200){
                     let jsonResp = JSON(response.data).arrayValue
@@ -143,8 +144,9 @@ class profileViewController: UIViewController, UITableViewDataSource, UITableVie
                     hud.dismiss()
                 }
             else{
+                print(response.error)
                 hud.dismiss()
-                showAlert(msg: "You seem to have connectivity issues.")
+                showAlert(msg: "You haven't signed up for any parties yet.")
             }
         }
         
